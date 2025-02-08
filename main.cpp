@@ -88,7 +88,14 @@ int timeSince12(int hh, int ph, int mm, int pm, int ss, int ps) {
 
 int daysSinceMarch1(int mm,int dd) {
     int daysInAMonth[] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 0};
-    return (daysInAMonth[mm-3])+(dd-1);
+    int totalDays = 0;
+    // Sum up days in completed months since March
+    for(int i = 2; i < mm-1; i++) {
+        totalDays += daysInAMonth[i];
+    }
+    // Add days in current month
+    totalDays += dd-1;
+    return totalDays;
 }
 
 
@@ -139,14 +146,18 @@ void taskFour() {
     int hh,mm,ss;
     int ph,pm,ps;
 
-    printf("Task 4: Overtime chosen.\n");
-    printf("________________________\n\n");
-    printf("Please enter the current time (hh:mm:ss): ");
-    scanf_s("%d:%d:%d",&hh,&mm,&ss);
-    printf("Please enter the previous time (hh:mm:ss): ");
-    scanf_s("%d:%d:%d",&ph,&pm,&ps);
+    do {
+        printf("Task 4: Overtime chosen.\n");
+        printf("________________________\n\n");
+        printf("Please enter the current time (hh:mm:ss): ");
+        scanf_s("%d:%d:%d",&hh,&mm,&ss);
+        if (!hh || !mm || !ss) {return;}
+        printf("Please enter the previous time (hh:mm:ss): ");
+        scanf_s("%d:%d:%d",&ph,&pm,&ps);
+        if (!ph || !pm || !ps) {return;}
 
-    printf("%d seconds have passed.", timeSince12(hh,ph,mm,pm,ss,ps));
+        printf("%d seconds have passed.", timeSince12(hh,ph,mm,pm,ss,ps));
+    } while (1);
 
 }
 
@@ -154,7 +165,14 @@ void bonusTask() {
     int mm,dd;
     printf("Bonus task chosen.\n");
     printf("________________________\n\n");
-    printf("Please enter the current day (mm/dd): ");
-    scanf_s("%d/%d",&mm,&dd);
-    printf("%d days left until Expo!",(daysSinceMarch1(5,9) - daysSinceMarch1(mm,dd)));
+    do {
+        printf("Please enter the current day (mm/dd): ");
+        scanf_s("%d/%d",&mm,&dd);
+        if (mm && dd) {
+            printf("%d days left until Expo!",(daysSinceMarch1(5,9) - daysSinceMarch1(mm,dd)));
+            return;
+        } else {
+            printf("Month and day cannot be zero.\n\n");
+        }
+    } while (!(mm && dd));
 }
