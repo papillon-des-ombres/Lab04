@@ -154,10 +154,10 @@ void taskFour() {
         printf("________________________\n\n");
         printf("Please enter the current time (hh:mm:ss): ");
         scanf_s("%d:%d:%d",&hh,&mm,&ss);
-        if (!hh || !mm || !ss) {return;}
+        if (!hh && !mm && !ss) {return;}
         printf("Please enter the previous time (hh:mm:ss): ");
         scanf_s("%d:%d:%d",&ph,&pm,&ps);
-        if (!ph || !pm || !ps) {return;}
+        if (!ph && !pm && !ps) {return;}
 
         printf("%d seconds have passed.", timeSince12(hh,ph,mm,pm,ss,ps));
     } while (1);
