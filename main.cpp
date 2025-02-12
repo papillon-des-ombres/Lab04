@@ -74,11 +74,14 @@ bool isEven(int x) {
 }
 
 void anyCharSquare(int l, char c) {
-    for (int i = 1; i <= l; i++) {
-        for (int j = 1; j <= l; j++) {
-            printf("%c ", c);
+    for (int i = 0; i < l * l; i++) {
+        // Print the character
+        printf("%c  ", c);
+
+        // Move to the next line after every 'l' characters
+        if ((i + 1) % l == 0) {
+            printf("\n");
         }
-        printf("\n");
     }
 }
 
