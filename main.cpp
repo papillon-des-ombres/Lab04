@@ -91,9 +91,9 @@ int timeSince12(int hh, int ph, int mm, int pm, int ss, int ps) {
 
 int daysSinceMarch1(int mm,int dd) {
     int daysInAMonth[] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 0};
-    int totalDays = 0;
+    int totalDays = -90;// Offset date to January to handle time before March
     // Sum up days in completed months since March
-    for(int i = 2; i < mm-1; i++) {
+    for(int i = 0; i < mm-1; i++) {
         totalDays += daysInAMonth[i];
     }
     // Add days in current month
